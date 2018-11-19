@@ -1,7 +1,7 @@
 {
   "name": "lostark",
   "version": "1.0.0",
-  "description": "My outstanding Nuxt.js project",
+  "description": "Lost Ark KOR server queue checking site",
   "author": "RubystarAshe",
   "private": true,
   "scripts": {
@@ -20,6 +20,9 @@
     "vuexfire": "^2.3.1"
   },
   "devDependencies": {
-    "nodemon": "^1.11.0"
+    "node-sass": "^4.10.0",
+    "nodemon": "^1.11.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0"
   }
 }

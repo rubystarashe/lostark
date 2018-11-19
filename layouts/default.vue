@@ -1,55 +1,63 @@
 <template>
-  <div>
-    <nuxt/>
+  <div v-show="$store.state.server">
+    <div class="bg"/>
+    <div class="logo">
+      <div class="a">Rubystar Ashe's</div>
+      <div class="b">Lost Ark Queue checker</div>
+    </div>
+    <nuxt v-if="$store.state.server" class="page_area"/>
   </div>
 </template>
 
 <style>
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+
+body {
+  margin: 0 0 0 0;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
+.bg {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: url('/bg.jpg');
+  background-position:50% 50%;  /* Sets reference point to scale from */
+  background-size:cover;
+  animation: brightness 1.0s;
+  filter: brightness(1.25);
+}
+.logo {
+  position: fixed;
+  transform: rotate(-35deg);
+  left: 10%;
+  top: 15%;
+  text-align: center;
+  animation: brightness 1.0s;
+  color: white;
+  opacity: 0.5;
+  font-family: 'Indie Flower', cursive;
+}
+.a {
+  font-size: calc(3vw + 3vh);
+}
+.b {
+  font-size: calc(2vw + 2vh);
+}
+.page_area {
+  position: fixed;
+  display: table;
+  animation: brightness 1.0s;
 }
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
+@keyframes brightness {
+  0%  {
+    filter: brightness(10);
+    opacity: 0;
+  }
 }
 
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
 </style>

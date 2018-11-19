@@ -14,4 +14,5 @@ Vue.db = db
 
 export default ({store}) => {
   store.dispatch('setServerRef', db.ref('lostark/queue/'))
+  store.dispatch('setServerStatusRef', db.ref('lostark/status/'))
 }
