@@ -54,5 +54,8 @@ module.exports = {
     extend(config, ctx) {
       
     }
+  },
+  router: {
+    base: '/lostark/'
   }
 }
