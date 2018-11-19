@@ -1,5 +1,6 @@
 <template>
 <section class="container">
+  <div class="status" :style="{color: serverStatus ? 'green' : 'gray'}">{{serverStatus ? '봇 서버 On' : '봇 서버 Off'}}</div>
   <div class="info">
     <div class="box">
       <div class="item" v-for="{ name, queue = '알 수 없음'} in server" :key="name">
@@ -24,11 +25,11 @@ export default {
   mounted() {
     setTimeout(() => {
       this.$message({
-        message: this.serverStatus ? '서버 On! 실시간으로 대기 순위를 확인할 수 있습니다!' : '현재 서버가 꺼져있습니다. 디스코드 루비스타#4609 로 말씀해 주세요',
+        message: this.serverStatus ? '봇 서버 On! 실시간으로 대기 순위를 확인할 수 있습니다!' : '현재 봇 서버가 꺼져있습니다. 디스코드 루비스타#4609 로 말씀해 주세요',
         type: this.serverStatus ? 'success' : 'warning'
       })
       this.$notify({
-        title: '알 수 없는 서버 문제점',
+        title: '알 수 없음 문제점',
         message: this.$createElement('i', { style: 'color: teal' }, '제 캐릭터가 존재하지 않는 서버는 갱신이 불가능하기 때문에, 캐릭터가 만들어지기 전까지는 이용이 불가능합니다.'),
         position: 'bottom-right',
         duration: 0
@@ -55,6 +56,12 @@ export default {
   margin: auto;
   background: rgba(0, 0, 0, 0.4);
   border-radius: 10px;
+}
+.status {
+  position: fixed;
+  text-shadow: -1px 0 rgba(255, 255, 255, 1), 0 1px rgba(255, 255, 255, 1), 1px 0 rgba(255, 255, 255, 1), 0 -1px rgba(255, 255, 255, 1);
+  font-size: calc(0.8vh + 0.8vw);
+  font-weight: bold;
 }
 .item {
   margin: calc(1.1vh + 1.1vw);
