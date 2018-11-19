@@ -24,7 +24,7 @@ body {
   top: 0;
   bottom: 0;
   right: 0;
-  background: url('/bg.jpg');
+  background: url('~static/bg.jpg');
   background-position:50% 50%;  /* Sets reference point to scale from */
   background-size:cover;
   animation: brightness 1.0s;
@@ -37,8 +37,7 @@ body {
   top: 15%;
   text-align: center;
   animation: brightness 1.0s;
-  color: white;
-  opacity: 0.5;
+  color: rgba(255, 255, 255, 0.5);
   font-family: 'Indie Flower', cursive;
 }
 .a {
@@ -50,13 +49,18 @@ body {
 .page_area {
   position: fixed;
   display: table;
-  animation: brightness 1.0s;
+  opacity: 0;
+  animation: brightness 1.0s forwards;
+  animation-delay: 0.5s;
 }
 
 @keyframes brightness {
   0%  {
     filter: brightness(10);
     opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
