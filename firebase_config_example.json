@@ -1,0 +1,8 @@
+{
+  "apiKey": "<APIKEY>",
+  "authDomain": "<DOMAIN>",
+  "databaseURL": "<DATABASE>",
+  "projectId": "<ID>",
+  "storageBucket": "<BUCKET>",
+  "messagingSenderId": "<SENDER>"
+}
