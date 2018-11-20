@@ -15,9 +15,10 @@
       <transition-component :data="day"/>일
     </div>
   </div>
-  <div class="info">
+  <div class="info" :style="{transition: 'all .5s', opacity: notidata ? 0 : 1}">
+    <div class="clickbg" v-if="notidata" @click="notidata = null"/>
     <div class="box">
-      <div class="item" v-for="{ name, queue = '알 수 없음'} in server" :key="name">
+      <div class="item" v-for="{ name, queue = '알 수 없음'} in server" :key="name" @click="(typeof queue === 'number') ? notidata = { name, queue } : null">
         <span class="data name">{{name}}</span>
         <span class="data queue" :style="{
           opacity: queue === '알 수 없음' ? 0.7 : 1,
@@ -26,6 +27,7 @@
       </div>
     </div>
   </div>
+  <notification v-if="notidata" :data.sync="notidata" :server="server"/>
 </section>
 </template>
 
@@ -33,10 +35,17 @@
 import { mapGetters } from 'vuex'
 
 import transitionComponent from '~/components/transition'
+import notification from '~/components/notification'
 
 export default {
   components: {
-    transitionComponent
+    transitionComponent,
+    notification
+  },
+  data() {
+    return {
+      notidata: null
+    }
   },
   computed: {
     ...mapGetters({
@@ -101,6 +110,13 @@ export default {
 </script>
 
 <style>
+.clickbg {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
 .container {
   width: 100%;
   height: 100%;
@@ -151,6 +167,7 @@ export default {
 .item {
   margin: calc(1.1vh + 1.1vw);
   font-size: calc(1.2vh + 1.2vw);
+  cursor: pointer;
 }
 .data {
   text-shadow: 0.1vw 0.1vh 0.1vw black;
