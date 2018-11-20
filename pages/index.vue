@@ -21,7 +21,7 @@
         <span class="data name">{{name}}</span>
         <span class="data queue" :style="{
           opacity: queue === '알 수 없음' ? 0.7 : 1,
-          color: queue === '알 수 없음' ? 'rgb(200, 200, 200)' : 'yellow'
+          color: queue === '알 수 없음' ? 'rgb(200, 200, 200)' : queue === '접속 가능' ? 'chartreuse' : 'yellow'
           }">{{queue}}</span>
       </div>
     </div>
