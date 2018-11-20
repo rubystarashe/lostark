@@ -65,9 +65,11 @@ export default {
     }
   },
   mounted() {
+    try {
     Notification.requestPermission(status => {
       if (Notification.permission !== status) Notification.permission = status
     })
+    } catch(e) {}
   },
   methods: {
     notification (mes) {
