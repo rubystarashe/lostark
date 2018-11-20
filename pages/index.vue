@@ -80,11 +80,20 @@ export default {
         type: this.serverStatus ? 'success' : 'warning'
       })
       this.$notify({
-        title: '알 수 없음 문제점',
-        message: this.$createElement('i', { style: 'color: teal' }, '제 캐릭터가 존재하지 않는 서버는 갱신이 불가능하기 때문에, 캐릭터가 만들어지기 전까지는 이용이 불가능합니다.'),
+        title: '디스코드 봇',
+        dangerouslyUseHTMLString: true,
+        message: '<a href="https://discordapp.com/api/oauth2/authorize?client_id=514053555682934790&scope=bot&permissions=3570752" target="_blank">눌러서 추가해 주세요!</a><br>현재 지원되는 명령어: !대기열',
         position: 'bottom-right',
         duration: 0
       })
+      setTimeout(() => {
+        this.$notify({
+          title: '알 수 없음 문제점',
+          message: this.$createElement('i', { style: 'color: teal' }, '제 캐릭터가 존재하지 않는 서버는 갱신이 불가능하기 때문에, 캐릭터가 만들어지기 전까지는 이용이 불가능합니다.'),
+          position: 'bottom-right',
+          duration: 0
+        })
+      }, 100)
     }, 1000)
   }
 }
