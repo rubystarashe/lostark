@@ -14,7 +14,7 @@ export default {
 .list-enter-active,
 .list-leave-active,
 .list-move {
-  transition: 500ms cubic-bezier(0.59, 0.12, 0.34, 0.95);
+  transition: 1.5s cubic-bezier(0.59, 0.12, 0.34, 0.95);
   transition-property: opacity, transform;
 }
 

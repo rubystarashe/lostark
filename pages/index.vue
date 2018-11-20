@@ -61,7 +61,7 @@ export default {
       return [this.date.getHours() + 1 > 12 ? '오후' : '오전']
     },
     hour () {
-      const hour = this.date.getHours() + 1
+      const hour = this.date.getHours()
       return [hour > 12 ? hour - 12 : hour]
     },
     minutes () {
