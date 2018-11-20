@@ -2,8 +2,7 @@
   <div v-show="$store.state.server">
     <div class="bg"/>
     <div class="logo">
-      <div class="a">Rubystar Ashe's</div>
-      <div class="b">Lost Ark Queue checker</div>
+      디스코드<br>루비스타#4609
     </div>
     <nuxt v-if="$store.state.server" class="page_area"/>
   </div>
@@ -11,7 +10,6 @@
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
-@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
 
 body {
   margin: 0 0 0 0;
@@ -32,19 +30,13 @@ body {
 }
 .logo {
   position: fixed;
-  transform: rotate(-35deg);
-  left: 10%;
-  top: 15%;
-  text-align: center;
+  right: 0%;
+  top: 0%;
+  text-align: right;
   animation: brightness 1.0s;
   color: rgba(255, 255, 255, 0.5);
-  font-family: 'Indie Flower', cursive;
-}
-.a {
-  font-size: calc(3vw + 3vh);
-}
-.b {
-  font-size: calc(2vw + 2vh);
+  font-size: calc(1vh + 1vw);
+  text-shadow: -1px 0 rgba(50, 50, 150, 0.3), 0 1px rgba(50, 50, 150, 0.3), 1px 0 rgba(50, 50, 150, 0.3), 0 -1px rgba(50, 50, 150, 0.3);
 }
 .page_area {
   position: fixed;

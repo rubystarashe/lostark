@@ -1,6 +1,6 @@
 <template>
 <section class="container">
-  <div class="status" :style="{color: serverStatus ? 'green' : 'gray'}">{{serverStatus ? '봇 서버 On' : '봇 서버 Off'}}</div>
+  <div class="status" :style="{color: serverStatus ? 'chartreuse' : 'red'}">{{serverStatus ? 'On' : 'Off'}}</div>
   <div class="date" v-if="updated">
     <div class="last">Last updated</div>
     <div class="now">
@@ -76,8 +76,9 @@ export default {
   mounted() {
     setTimeout(() => {
       this.$message({
-        message: this.serverStatus ? '봇 서버 On! 실시간으로 대기 순위를 확인할 수 있습니다!' : '현재 봇 서버가 꺼져있습니다. 디스코드 루비스타#4609 로 말씀해 주세요',
-        type: this.serverStatus ? 'success' : 'warning'
+        message: this.serverStatus ? '봇 서버 On! 실시간으로 대기 순위를 확인할 수 있습니다!' : '평일 오전 등 이용자가 적어 모든 서버가 접속가능한 시간대에는 봇 서버가 꺼져있을 수 있습니다. 디스코드 루비스타#4609 로 말씀해 주세요',
+        type: this.serverStatus ? 'success' : 'warning',
+        duration: 5000
       })
       this.$notify({
         title: '디스코드 봇',
@@ -143,7 +144,7 @@ export default {
 }
 .status {
   position: fixed;
-  text-shadow: -1px 0 rgba(255, 255, 255, 1), 0 1px rgba(255, 255, 255, 1), 1px 0 rgba(255, 255, 255, 1), 0 -1px rgba(255, 255, 255, 1);
+  text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;
   font-size: calc(0.8vh + 0.8vw);
   font-weight: bold;
 }
