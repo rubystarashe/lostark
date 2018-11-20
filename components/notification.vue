@@ -20,7 +20,9 @@ export default {
   ],
   computed: {
     permission () {
+      try {
       return Notification.permission
+      } catch(e) {return null}
     },
     nowqueue () {
       const queue = this.server.find(e => e.name === this.data.name).queue
