@@ -18,7 +18,7 @@
   <div class="info" :style="{transition: 'all .5s', opacity: notidata ? 0 : 1}">
     <div class="clickbg" v-if="notidata" @click="notidata = null"/>
     <div class="box">
-      <div class="item" v-for="{ name, queue = '알 수 없음'} in server" :key="name" @click="(typeof queue === 'number') ? notidata = { name, queue } : null">
+      <div class="item" v-for="{ name, queue = '알 수 없음'} in server" :key="name" @click="(typeof queue === 'number' && Notification) ? notidata = { name, queue } : null">
         <span class="data name">{{name}}</span>
         <span class="data queue" :style="{
           opacity: queue === '알 수 없음' ? 0.7 : 1,
