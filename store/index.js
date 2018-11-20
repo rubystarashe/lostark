@@ -2,7 +2,8 @@ import { firebaseMutations, firebaseAction } from 'vuexfire'
 
 export const state = () => ({
   server: null,
-  serverStatus: false
+  serverStatus: false,
+  updated: null
 })
 
 export const mutations = {
@@ -15,10 +16,14 @@ export const actions = {
   }),
   setServerStatusRef: firebaseAction(({ bindFirebaseRef }, ref) => {
     bindFirebaseRef('serverStatus', ref)
+  }),
+  setUpdatedRef: firebaseAction(({ bindFirebaseRef }, ref) => {
+    bindFirebaseRef('updated', ref)
   })
 }
 
 export const getters = {
-  getServer: state => state.server['.value'],
-  getServerStatus: state => state.serverStatus['.value']
+  getServer: state => (state.server || [])['.value'],
+  getServerStatus: state => state.serverStatus['.value'],
+  getUpdated: state => (state.updated || [])['.value']
 }

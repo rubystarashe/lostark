@@ -1,11 +1,28 @@
 <template>
 <section class="container">
   <div class="status" :style="{color: serverStatus ? 'green' : 'gray'}">{{serverStatus ? '봇 서버 On' : '봇 서버 Off'}}</div>
+  <div class="date" v-if="updated">
+    <div class="last">Last updated</div>
+    <div class="now">
+      <transition-component :data="pam"/>
+      <transition-component :data="hour"/>시
+      <transition-component :data="minutes"/>분
+      <transition-component :data="seconds"/>초
+    </div>
+    <div class="dayName"><transition-component :data="dayName"/>요일</div>
+    <div class="day">
+      <transition-component :data="month"/>월
+      <transition-component :data="day"/>일
+    </div>
+  </div>
   <div class="info">
     <div class="box">
       <div class="item" v-for="{ name, queue = '알 수 없음'} in server" :key="name">
         <span class="data name">{{name}}</span>
-        <span class="data queue">{{queue}}</span>
+        <span class="data queue" :style="{
+          opacity: queue === '알 수 없음' ? 0.7 : 1,
+          color: queue === '알 수 없음' ? 'rgb(200, 200, 200)' : 'yellow'
+          }">{{queue}}</span>
       </div>
     </div>
   </div>
@@ -15,12 +32,46 @@
 <script>
 import { mapGetters } from 'vuex'
 
+import transitionComponent from '~/components/transition'
+
 export default {
+  components: {
+    transitionComponent
+  },
   computed: {
     ...mapGetters({
+      updated: 'getUpdated',
       server: 'getServer',
       serverStatus: 'getServerStatus'
-    })
+    }),
+    date () {
+      return new Date(this.updated)
+    },
+    month () {
+      return [this.date.getMonth() + 1]
+    },
+    day () {
+      return [this.date.getDate()]
+    },
+    dayName () {
+      const week = ['일', '월', '화', '수', '목', '금', '토']
+      return [week[this.date.getDay()]]
+    },
+    pam () {
+      return [this.date.getHours() + 1 > 12 ? '오후' : '오전']
+    },
+    hour () {
+      const hour = this.date.getHours() + 1
+      return [hour > 12 ? hour - 12 : hour]
+    },
+    minutes () {
+      const minutes = this.date.getMinutes()
+      return [minutes < 10 ? '0' + minutes : minutes]
+    },
+    seconds () {
+      const seconds = this.date.getSeconds()
+      return [seconds < 10 ? '0' + seconds : seconds]
+    }
   },
   mounted() {
     setTimeout(() => {
@@ -45,11 +96,35 @@ export default {
   height: 100%;
   text-align: center;
 }
+.date {
+  position: fixed;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 4vh;
+}
+.last {
+  font-size: calc(0.7vh + 0.7vw);
+  padding-bottom: 0.7vh;
+}
+.now {
+  font-size: calc(1.2vh + 1.2vw);
+}
+.day {
+  font-size: calc(1.5vh + 1.5vw);
+  }
+.dayName {
+  font-size: calc(4.5vh + 4.5vw);
+}
 .info {
+  position: relative;
   display: table-cell;
   vertical-align: middle;
 }
 .box {
+  z-index: 9999;
   max-width: 30vh;
   min-width: 30vw;
   padding: 3vh;
