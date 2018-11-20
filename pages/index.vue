@@ -44,8 +44,7 @@ export default {
   },
   data() {
     return {
-      notidata: null,
-      checknoti: null
+      notidata: null
     }
   },
   computed: {
@@ -89,12 +88,10 @@ export default {
         try {
           Notification.requestPermission(status => {
             if (Notification.permission !== status) Notification.permission = status
-            this.notidata = { name, queue }
           })
-          this.checknoti = true
         } catch (e) {
-          this.checknoti = null
         }
+        this.notidata = { name, queue }
       }
     }
   },
