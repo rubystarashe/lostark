@@ -18,7 +18,7 @@
   <div class="info" :style="{transition: 'all .5s', opacity: notidata ? 0 : 1}">
     <div class="clickbg" v-if="notidata" @click="notidata = null"/>
     <div class="box">
-      <div class="item" v-for="{ name, queue = '알 수 없음'} in server" :key="name" @click="(typeof queue === 'number' && notifi) ? notidata = { name, queue } : null">
+      <div class="item" v-for="{ name, queue = '알 수 없음'} in server" :key="name" @click="notifi({ name, queue })">
         <span class="data name">{{name}}</span>
         <span class="data queue" :style="{
           opacity: queue === '알 수 없음' ? 0.7 : 1,
@@ -44,7 +44,8 @@ export default {
   },
   data() {
     return {
-      notidata: null
+      notidata: null,
+      checknoti: null
     }
   },
   computed: {
@@ -53,14 +54,6 @@ export default {
       server: 'getServer',
       serverStatus: 'getServerStatus'
     }),
-    notifi () {
-      try {
-        const test = Notification
-        return test
-      } catch (e) {
-        return null
-      }
-    },
     date () {
       return new Date(this.updated)
     },
@@ -88,6 +81,21 @@ export default {
     seconds () {
       const seconds = this.date.getSeconds()
       return [seconds < 10 ? '0' + seconds : seconds]
+    }
+  },
+  methods: {
+    notifi ({ name, queue }) {
+      if (typeof queue === 'number') {
+        try {
+          Notification.requestPermission(status => {
+            if (Notification.permission !== status) Notification.permission = status
+            this.notidata = { name, queue }
+          })
+          this.checknoti = true
+        } catch (e) {
+          this.checknoti = null
+        }
+      }
     }
   },
   mounted() {
