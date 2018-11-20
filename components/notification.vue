@@ -75,9 +75,11 @@ export default {
   },
   methods: {
     notification (mes) {
+      try {
       if (this.permission === 'granted') {
         new Notification(mes)
       }
+      }catch(e){}
     }
   },
   watch: {
