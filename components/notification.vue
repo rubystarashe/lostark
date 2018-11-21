@@ -4,7 +4,7 @@
   <div class="nowq">{{nowqueue === '알 수 없음' || nowqueue === '접속 가능' ? nowqueue : '지금 시작하면 ' + nowqueue + '번째 대기자'}}</div>
   <div class="titlen">아래에 현재 대기순위를 입력하시면 예상 접속시간을 알려드립니다!</div>
   <div class="alarm" v-if="this.permission === 'granted'">* 예상시간 60분, 30분 전에 알람으로 알려줍니다 *</div>
-  <div class="i_area"><el-input-number class="input" v-model="data.queue" :step="1000"/></div>
+  <div class="i_area"><el-input-number class="input" type="number" v-model="data.queue" :step="1000"/></div>
   <div class="end">예상 완료 시간 : {{endtime.pm}} {{endtime.hour}}시 {{endtime.min}}분</div>
   <div class="remain">{{remain.hour}}시간 {{remain.min}}분 {{remain.sec}}초 남음</div>
   <div class="todo" v-if="!(remain.hour === 0 && remain.min === 0 && remain.sec === 0)">* {{todo}} *</div>

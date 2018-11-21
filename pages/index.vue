@@ -103,16 +103,17 @@ export default {
         duration: 5000
       })
       this.$notify({
-        title: '디스코드 봇',
+        title: '디스코드 봇 명령어',
         dangerouslyUseHTMLString: true,
-        message: '<a href="https://discordapp.com/api/oauth2/authorize?client_id=514053555682934790&scope=bot&permissions=3570752" target="_blank">눌러서 추가해 주세요!</a><br>현재 지원되는 명령어: !대기열',
+        message: '<b>!대기열</b> 전체 서버의 대기열을 확인합니다<br><b>!서버이름</b> 해당 서버의 대기열을 확인합니다(ex, !안타레스)<br><b>!알림 숫자, !예약 숫자, !대기열 숫자</b> 현재 자신의 대기열을 입력하면 알람을 받을 수 있습니다.(ex, !대기열 6271)',
         position: 'bottom-right',
         duration: 0
       })
       setTimeout(() => {
         this.$notify({
-          title: '알 수 없음 문제점',
-          message: this.$createElement('i', { style: 'color: teal' }, '제 캐릭터가 존재하지 않는 서버는 갱신이 불가능하기 때문에, 캐릭터가 만들어지기 전까지는 이용이 불가능합니다.'),
+          title: '디스코드 봇 추가',
+          dangerouslyUseHTMLString: true,
+          message: '<a href="https://discordapp.com/api/oauth2/authorize?client_id=514053555682934790&scope=bot&permissions=3570752" target="_blank">눌러서 추가해 주세요!</a>',
           position: 'bottom-right',
           duration: 0
         })
